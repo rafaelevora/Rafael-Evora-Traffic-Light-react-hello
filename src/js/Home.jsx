@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-import TrafficLight from './TrafficLight';
+import TrafficLight from './components/TrafficLight'
 
 
 
@@ -13,7 +12,8 @@ import TrafficLight from './TrafficLight';
 const Home = () => {
     return (
         <>
-        <TrafficLight />
+<TrafficLight/>
+        
         </>
     )
 }

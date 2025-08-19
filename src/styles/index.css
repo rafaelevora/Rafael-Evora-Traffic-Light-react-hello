@@ -1,11 +1,230 @@
-/* 
+body {
+    background-color: rgb(51, 51, 51);
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
+
+
+/* Center the traffic light wrapper */
+.trafficLight-wrapper {
+    display: flex;
+    justify-content: center; horizontal center
+    height: 100vh;           /* full viewport height */
+    position: relative;      /* allows absolutely positioning the timer */
+}
+
+/* Position the timer in the upper-left corner */
+.timer-display {
+  font-family: 'Digital-7 Mono', monospace;
+  width: 300px;
+  height: 100px;
+  color: #00ff00;
+  font-size: 60px;
+  background-color: #252525;
+  border: 3px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff00;
+  text-align: center;
+
+  /* Positioning */
+  position: absolute;
+  top: 40px;     /* distance from top of page */
+  left: 40px;    /* distance from left of page */
+  margin: 0;     /* remove default margins */
+}
+
+
+.trafficLight {
+    width: 300px;
+    height: 750px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(107, 107, 107); */
+    /* justify-content: center; */
+    align-items: center;
+
+}
+.trafficLight-stick {
+    width: 50px;
+    height: 150px;
+    background-color: rgb(45, 45, 45);
+    border: 3px solid rgb(84, 84, 84);
+    position: relative;   /* required for glare */
+    overflow: hidden;     /* keeps glare inside the stick */
+}
+
+/* Glare overlay */
+.trafficLight-stick::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.25) 0%,
+        rgba(255,255,255,0.05) 40%,
+        rgba(179, 179, 179, 0) 100%
+    );
+    pointer-events: none;
+}
+
+.trafficLight-body {
+    width: 300px;
+    height: 600px;
+    background-color: rgb(28, 28, 28);
+    border: 4px solid rgb(66, 66, 66);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;  /* <-- needed for the glare */
+    overflow: hidden;    /* <-- prevents glare from spilling outside */
+}
+
+/* Glare overlay */
+.trafficLight-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(
+        130deg,
+        rgba(255,255,255,0.25) 0%,
+        rgba(255,255,255,0.05) 40%,
+        rgba(255,255,255,0) 100%
+    );
+    pointer-events: none; /* makes sure glare doesn’t block clicks */
+}
+
+
+.lights-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    height: 550px;
+    /* background-color: rgb(173, 111, 111); */
+}
+
+.red {
+  background: radial-gradient(circle at 30% 30%, #ff6666, #cc0000);
+  width: 165px;
+  height: 165px;
+  border-radius: 100px;
+  border: 4px solid rgb(55, 55, 55);
+
+  /* Glassy effect */
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.7),   /* outer glow */
+    inset -10px -10px 30px rgba(0, 0, 0, 0.6), /* shadow inside */
+    inset 10px 10px 20px rgba(255, 255, 255, 0.3); /* highlight inside */
+  position: relative;
+}
+
+/* Fake reflection spot */
+.red::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+  border-radius: 50%;
+}
+/* .red:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 32, 32, 0.5);
+    cursor: pointer;
+} */
+
+
+
+.yellow {
+  background: radial-gradient(circle at 30% 30%, #ffff99, #cccc00);
+  width: 165px;
+  height: 165px;
+  border-radius: 100px;
+  border: 4px solid rgb(55, 55, 55);
+
+  /* Glassy effect */
+  box-shadow: 
+    0 0 20px rgba(255, 255, 0, 0.7),   /* outer glow */
+    inset -10px -10px 30px rgba(0, 0, 0, 0.6), /* shadow inside */
+    inset 10px 10px 20px rgba(255, 255, 255, 0.3); /* highlight inside */
+  position: relative;
+}
+
+/* Fake reflection spot */
+.yellow::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+  border-radius: 50%;
+}
+
+
+/* .yellow:hover {
+    box-shadow: 0 0 10px 5px rgb(255, 255, 79);
+    cursor: pointer;
+} */
+
+.green {
+  background: radial-gradient(circle at 30% 30%, #99ff99, #009900);
+  width: 165px;
+  height: 165px;
+  border-radius: 100px;
+  border: 4px solid rgb(55, 55, 55);
+
+  /* Glassy effect */
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.7),   /* outer glow */
+    inset -10px -10px 30px rgba(0, 0, 0, 0.6), /* shadow inside */
+    inset 10px 10px 20px rgba(255, 255, 255, 0.3); /* highlight inside */
+  position: relative;
+}
+
+/* Fake reflection spot */
+.green::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+  border-radius: 50%;
+}
+
+/* .green:hover {
+    box-shadow: 0 0 10px 5px rgb(26, 255, 26);
+    cursor: pointer;
+} */
+
+.active-red {
+    box-shadow: 1px 1px 130px 20px rgb(255, 133, 133);
+}
+.active-yellow {
+    box-shadow: 1px 1px 123px 20px rgb(255, 242, 121);
+}
+.active-green {
+    box-shadow: 1px 1px 145px 20px rgb(159, 255, 146);
+}
+
+
+
+    /* ...Or you can use the import command to include 
     other sylesheets into your bunde as well, e.j:
     
-    import 'relative/path/to/stylesheet.scss';
+    import 'relative/path/to/stylesheet.scss'; */
 
-*/
